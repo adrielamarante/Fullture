@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo D&D</title>
+    <script>
+        // Definindo o objeto do jogador
+let player = {
+    nome: "",
+    HP: 0,
+    dano: 0
+};
+
+// Função para solicitar e validar a entrada do usuário
+function solicitarEntrada(mensagem) {
+    let entrada = prompt(mensagem);
+    while (entrada === null || entrada.trim() === "") {
+        entrada = prompt("Por favor, insira um valor válido.");
+    }
+    return entrada;
+}
+
+// Função para solicitar e validar pontos de atributos
+function atribuirAtributos() {
+    let pontos = 20;
+    let vida = -1;
+    let ataque = -1;
+    while (vida < 0 || vida > pontos) {
+        vida = parseInt(solicitarEntrada("Digite a quantidade de pontos para VIDA (0-20):"));
+    }
+    pontos -= vida;
+    while (ataque < 0 || ataque > pontos) {
+        ataque = parseInt(solicitarEntrada("Digite a quantidade de pontos para ATAQUE (0-20):"));
+    }
+    player.HP = vida * 100;
+    player.dano = ataque * 10;
+}
+
+// Função para iniciar o jogo
+function iniciarJogo() {
+    player.nome = solicitarEntrada("Digite o seu nome:");
+    alert("Olá, " + player.nome + "! Bem-vindo ao jogo!");
+
+    atribuirAtributos();
+    alert("Atributos atribuídos com sucesso!");
+
+    // Iniciar a história
+    iniciarHistoria();
+}
+
+// Função para iniciar a história
+function iniciarHistoria() {
+    alert("Você está prestes entrar em uma grande e emocionante aventura!");
+
+    // Introdução da história
+    alert("Você está agora em uma estrada vazia e vc nem sabe como chegou lá. ");
+
+    // Primeira escolha do jogador
+    let escolha1 = prompt("Você decide:\nA) Continuar caminhando\nB) Esconder");
+    if (escolha1.toUpperCase() === "A") {
+        // Continuação da história se o jogador escolhe explorar
+        alert("Você decide explorar a beira da estrada e encontra uma espada bem antiga! ");
+        player.dano += 20; // Atribuir um bônus de dano ao jogador
+    } else {
+        // Continuação da história, você grita  pedindo ajuda ev pra saber se álguém por perto.
+        alert("Você grita por ajuda, mas ninguém responde. Você decide seguir em frente pela estrada.");
+    }
+
+    // Segunda escolha do jogador
+    let escolha2 = prompt("N sua caminhada, você encontra uma bifurcação no caminho:\nA) Seguir pela esquerda\nB) Seguir pela direita");
+    if (escolha2.toUpperCase() === "A") {
+        // Continuação da história se o jogador escolhe seguir pela esquerda
+        alert("Você segue pela esquerda e se depara com um monstro e você precisa vencer para poder seguir em frente.");
+        alert("Parabén você venceu o mostro Brabão!");
+         } else {
+             // Continuação da história se o jogador escolhe ir pela direita estará a caminho de sua casa.
+        alert("Você segue pela direita estará a caminho de casa.");
+        
+    }
+
+    // Final da história
+    alert("Após várias aventuras e desafios, você finalmente volta pra sua casa como heroi!");
+
+    // Exibir status final do jogador
+    alert("Status final do jogador:\nNome: " + player.nome + "\nHP: " + player.HP + "\nDano: " + player.dano);
+}
+
+
+
+// Iniciar o jogo
+iniciarJogo();
+
+            
+        
+      </script>      
+        </head>
+        <body>
+            
+        </body>
+        </html>
